@@ -1,2 +1,2 @@
-# ih-api-service
+# api-service
 backend api
