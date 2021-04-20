@@ -1,0 +1,53 @@
+---
+swagger: "2.0"
+info:
+  version: "v1"
+  title: "app-service"
+tags:
+- name: "sample api"
+  description: "Operate hoge"
+paths:
+  /v1/sample:
+    get:
+      tags:
+      - "sample api"
+      summary: "check"
+      description: "return 200"
+      operationId: "check"
+      parameters: []
+      responses:
+        200:
+          description: "200を返すだけ"
+    post:
+      tags:
+      - "sample api"
+      summary: "HelloWorld"
+      description: "insert/update into sample"
+      operationId: "helloWorld"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/HelloWorldInputDto"
+      responses:
+        200:
+          description: "hello wolrdを返す"
+          schema:
+            $ref: "#/definitions/HelloWorldOutputDto"
+definitions:
+  HelloWorldInputDto:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+  HelloWorldOutputDto:
+    type: "object"
+    properties:
+      count:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"

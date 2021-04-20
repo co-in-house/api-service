@@ -1,0 +1,8 @@
+---
+applications:
+- name: app-service
+  memory: 1024M
+  instances: 1
+  path: target/app-service.jar
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'

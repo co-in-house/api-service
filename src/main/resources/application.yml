@@ -1,0 +1,13 @@
+spring:
+  application:
+      name: app-service
+  datasource:
+    url: jdbc:db2://dashdb-txn-sbox-yp-dal09-11.services.dal.bluemix.net:50000/BLUDB:currentSchema=ZZK83155;
+    username: zzk83155
+    password: b4gk6ktzw-tzhhm4
+    driver-class-name: com.ibm.db2.jcc.DB2Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
