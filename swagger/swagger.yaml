@@ -133,6 +133,6 @@ definitions:
       communityId:
         type: "integer"
         format: "int32"
-      tagTyep:
+      tagType:
         type: "integer"
         format: "int32"
