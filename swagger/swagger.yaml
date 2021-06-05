@@ -4,9 +4,28 @@ info:
   version: "v1"
   title: "app-service"
 tags:
+- name: "community api"
+  description: "Manage Community"
 - name: "sample api"
   description: "Operate hoge"
 paths:
+  /v1/community/list:
+    get:
+      tags:
+      - "community api"
+      summary: "GET Communities List"
+      description: "return 200"
+      operationId: "GetGommunitiesList"
+      parameters:
+      - name: "keyword"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "return Communities List"
+          schema:
+            $ref: "#/definitions/GetCommunitiesListOutputDto"
   /v1/sample:
     get:
       tags:
@@ -36,6 +55,48 @@ paths:
           schema:
             $ref: "#/definitions/HelloWorldOutputDto"
 definitions:
+  Community:
+    type: "object"
+    properties:
+      communityId:
+        type: "integer"
+        format: "int32"
+      communityName:
+        type: "string"
+      content:
+        type: "string"
+      locationId:
+        type: "integer"
+        format: "int32"
+      locationName:
+        type: "string"
+      note:
+        type: "string"
+      profileImgUrl:
+        type: "string"
+      headerImgUrl:
+        type: "string"
+      tagList:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+      primaryUserList:
+        type: "array"
+        items:
+          $ref: "#/definitions/PrimaryUser"
+      created:
+        type: "string"
+        format: "date-time"
+      modified:
+        type: "string"
+        format: "date-time"
+  GetCommunitiesListOutputDto:
+    type: "object"
+    properties:
+      communityList:
+        type: "array"
+        items:
+          $ref: "#/definitions/Community"
   HelloWorldInputDto:
     type: "object"
     required:
@@ -51,3 +112,27 @@ definitions:
         format: "int32"
       message:
         type: "string"
+  PrimaryUser:
+    type: "object"
+    properties:
+      primaryUserId:
+        type: "integer"
+        format: "int32"
+      roleName:
+        type: "string"
+      userName:
+        type: "string"
+  Tag:
+    type: "object"
+    properties:
+      tagId:
+        type: "integer"
+        format: "int32"
+      tagName:
+        type: "string"
+      communityId:
+        type: "integer"
+        format: "int32"
+      tagTyep:
+        type: "integer"
+        format: "int32"
