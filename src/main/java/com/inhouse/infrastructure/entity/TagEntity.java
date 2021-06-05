@@ -56,7 +56,7 @@ public class TagEntity implements Serializable {
         return Tag.builder()
                 .tagId(this.tagId)
                 .tagName(this.tagName)
-                .tagTyep(this.tagType)
+                .tagType(this.tagType)
                 .communityId(this.communityEntity.getCommunityId())
                 .build();
     }

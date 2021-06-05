@@ -20,5 +20,5 @@ public class Tag {
     private int communityId;
 
     /** タグ種別 */
-    private int tagTyep;
+    private int tagType;
 }
