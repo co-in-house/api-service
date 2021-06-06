@@ -80,10 +80,8 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Tag"
-      primaryUserList:
-        type: "array"
-        items:
-          $ref: "#/definitions/PrimaryUser"
+      requirement:
+        type: "string"
       created:
         type: "string"
         format: "date-time"
@@ -111,16 +109,6 @@ definitions:
         type: "integer"
         format: "int32"
       message:
-        type: "string"
-  PrimaryUser:
-    type: "object"
-    properties:
-      primaryUserId:
-        type: "integer"
-        format: "int32"
-      roleName:
-        type: "string"
-      userName:
         type: "string"
   Tag:
     type: "object"
