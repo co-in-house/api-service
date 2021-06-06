@@ -9,6 +9,24 @@ tags:
 - name: "sample api"
   description: "Operate hoge"
 paths:
+  /v1/community:
+    post:
+      tags:
+      - "community api"
+      summary: "Post Community"
+      description: "insert community"
+      operationId: "helloWorld"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/PostCommunityInputDto"
+      responses:
+        200:
+          description: "return status code only"
+          schema:
+            $ref: "#/definitions/PostCommunityOutputDto"
   /v1/community/list:
     get:
       tags:
@@ -110,6 +128,33 @@ definitions:
         format: "int32"
       message:
         type: "string"
+  PostCommunityInputDto:
+    type: "object"
+    required:
+    - "communityName"
+    - "locationId"
+    properties:
+      communityName:
+        type: "string"
+      content:
+        type: "string"
+      locationId:
+        type: "integer"
+        format: "int32"
+      note:
+        type: "string"
+      tagList:
+        type: "array"
+        items:
+          type: "string"
+      requirement:
+        type: "string"
+  PostCommunityOutputDto:
+    type: "object"
+    properties:
+      communityId:
+        type: "integer"
+        format: "int32"
   Tag:
     type: "object"
     properties:

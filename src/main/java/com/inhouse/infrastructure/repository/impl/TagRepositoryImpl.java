@@ -2,7 +2,9 @@ package com.inhouse.infrastructure.repository.impl;
 
 import java.util.ArrayList;
 
+import com.inhouse.domain.object.Tag;
 import com.inhouse.domain.repository.TagRepository;
+import com.inhouse.infrastructure.entity.TagEntity;
 import com.inhouse.infrastructure.repository.TagJpaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ public class TagRepositoryImpl implements TagRepository {
     @Override
     public ArrayList<Integer> findCommunityidByTagnameContaining(String keyword) {
         return (ArrayList<Integer>) jpaRepo.findCommunityidByTagnameContaining(keyword);
+    }
+
+    @Override
+    public Tag save(Tag tag) {
+        return jpaRepo.save(TagEntity.build(tag)).toDomain();
     }
 
 }

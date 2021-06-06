@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -106,8 +107,10 @@ public class CommunityEntity implements Serializable {
 
     public Community toDomain() {
         List<Tag> tagList = new ArrayList<Tag>();
-        for (TagEntity tagEntity : this.tags) {
-            tagList.add(tagEntity.toDomain());
+        if(!Objects.isNull(this.tags) && this.tags.size() > 0){
+                for (TagEntity tagEntity : this.tags) {
+                tagList.add(tagEntity.toDomain());
+                }
         }
         return Community.builder()
                 .communityId(this.communityId)

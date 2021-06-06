@@ -2,6 +2,8 @@ package com.inhouse.domain.repository;
 
 import java.util.ArrayList;
 
+import com.inhouse.domain.object.Tag;
+
 /**
  * インフラ層とのインタフェース
  */
@@ -9,14 +11,7 @@ public interface TagRepository {
 
     ArrayList<Integer> findCommunityidByTagnameContaining(String keyword);
 
-// //     /**
-// //      * 作成、更新
-// //      *
-// //      * @param Sample 作成、更新したsample
-// //      * @return 更新後のsample
-// //      */
-// //     Sample save(Sample sample);
+    Tag save(Tag tag);
 
-// //     Optional<Sample> findByName(String name);
 
 }

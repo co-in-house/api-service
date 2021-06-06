@@ -39,4 +39,10 @@ public class CommunityRepositoryImpl implements CommunityRepository {
         return response;
     }
 
+    @Override
+    public Community save(Community community) {
+        Community response = jpaRepo.save(CommunityEntity.build(community)).toDomain();
+        return response;
+    }
+
 }

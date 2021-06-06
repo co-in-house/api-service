@@ -3,8 +3,6 @@ package com.inhouse.application.resource.community;
 
 import javax.validation.constraints.NotNull;
 
-import com.inhouse.domain.object.Sample;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,10 +18,8 @@ public class GetCommunitiesListInputDto {
      *
      * @return ドメインオブジェクト
      */
-    public Sample toDomain() {
-        return Sample.builder()
-                .name(this.keyword)
-                .build();
+    public String toDomain() {
+        return keyword;
     }
 
     public void build(String keyword){

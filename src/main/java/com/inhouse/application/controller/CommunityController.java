@@ -4,12 +4,17 @@ import java.util.List;
 
 import com.inhouse.application.resource.community.GetCommunitiesListInputDto;
 import com.inhouse.application.resource.community.GetCommunitiesListOutputDto;
+import com.inhouse.application.resource.community.PostCommunityInputDto;
+import com.inhouse.application.resource.community.PostCommunityOutputDto;
 import com.inhouse.domain.object.Community;
 import com.inhouse.domain.service.CommunityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,33 +51,27 @@ public class CommunityController {
                                                                     .build();
         GetCommunitiesListOutputDto response = new GetCommunitiesListOutputDto();
         
-        List<Community> communityList = service.getCommunityList(input);
+        List<Community> communityList = service.getCommunityList(input.toDomain());
 
         response.setCommunityList(communityList);
         return response;
     }
 
 
-    // /**
-    //  * サンプル処理
-    //  *
-    //  * @param userBody リクエストボディ
-    //  * @return 更新後のユーザ
-    //  */
-    // @ApiOperation(value ="HelloWorld", notes="insert/update into sample")
-    // @ApiResponses({
-    //         @ApiResponse(code = 200, message = "hello wolrdを返す", response = HelloWorldOutputDto.class)
-    // })
-    // @PostMapping
-    // @ResponseStatus(HttpStatus.OK)
-    // public HelloWorldOutputDto helloWorld(@RequestBody @Validated HelloWorldInputDto body) {
-    //     HelloWorldOutputDto response = new HelloWorldOutputDto();
+    @ApiOperation(value ="Post Community", notes="insert community")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "return status code only", response = PostCommunityOutputDto.class)
+    })
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public PostCommunityOutputDto helloWorld(@RequestBody @Validated PostCommunityInputDto body) {
+        PostCommunityOutputDto response = new PostCommunityOutputDto();
+        
+        int communityId = service.createCommunity(body.toDomain());
 
-    //     Sample sample = service.hello(body.toDomain());
-    //     response.setCount(sample.getCount());
-    //     response.setMessage("Hello " + sample.getName() + "!");
-    //     return response;
-    // }
+        response.setCommunityId(communityId);
+        return response;
+    }
 
 
   

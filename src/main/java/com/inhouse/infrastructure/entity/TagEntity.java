@@ -1,7 +1,6 @@
 package com.inhouse.infrastructure.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,9 +42,6 @@ public class TagEntity implements Serializable {
 
     @Column(name = "tag_name")
     private String tagName;
-    
-    @Column(name = "created")
-    private Timestamp created;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "community_id")
@@ -59,5 +55,14 @@ public class TagEntity implements Serializable {
                 .tagType(this.tagType)
                 .communityId(this.communityEntity.getCommunityId())
                 .build();
+    }
+
+    public static TagEntity build(Tag tag) {
+        return TagEntity.builder()
+                    .tagId(tag.getTagId())
+                    .tagName(tag.getTagName())
+                    .tagType(tag.getTagType())
+                    .communityEntity(CommunityEntity.builder().communityId(tag.getCommunityId()).build())
+                    .build();
     }
 }
