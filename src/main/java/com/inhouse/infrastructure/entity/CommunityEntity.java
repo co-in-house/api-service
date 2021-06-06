@@ -13,8 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -53,7 +53,7 @@ public class CommunityEntity implements Serializable {
     @OneToMany(mappedBy = "communityEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TagEntity> tags;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "location_id")
     private LocationEntity localtion;
 
