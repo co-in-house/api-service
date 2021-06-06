@@ -40,8 +40,8 @@ public class Community {
     /** タグリスト */
     private List<Tag> tagList;
 
-    /** 主要ユーザリスト */
-    private List<PrimaryUser> primaryUserList;
+    /** 入会条件 */
+    private String requirement;
 
     /** 作成日時 */
     private Timestamp created;

@@ -50,6 +50,9 @@ public class CommunityEntity implements Serializable {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "requirement")
+    private String requirement;
+
     @OneToMany(mappedBy = "communityEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TagEntity> tags;
 
@@ -84,6 +87,7 @@ public class CommunityEntity implements Serializable {
                     .communityId(community.getCommunityId())
                     .communityName(community.getCommunityName())
                     .content(community.getContent())
+                    .requirement(community.getRequirement())
                     .localtion(
                             LocationEntity.build(
                                     Location.builder()
@@ -109,6 +113,7 @@ public class CommunityEntity implements Serializable {
                 .communityId(this.communityId)
                 .communityName(this.communityName)
                 .content(this.content)
+                .requirement(this.requirement)
                 .locationId(this.localtion.getLocationId())
                 .locationName(this.localtion.getLocationName())
                 .note(this.note)
