@@ -38,4 +38,12 @@ public class LocationEntity implements Serializable {
                     .locationName(location.getLocationName())
                     .build();
     }
+
+
+    public Location toDomain() {
+        return Location.builder()
+                .locationId(this.locationId)
+                .locationName(this.locationName)
+                .build();
+    }
 }

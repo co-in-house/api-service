@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
 /**
- * サンプルコントローラ
+ * コミュニティ コントローラ
  */
 @Api(value="community api", description="Manage Community")
 @RestController

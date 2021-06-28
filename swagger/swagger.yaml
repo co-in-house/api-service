@@ -6,6 +6,8 @@ info:
 tags:
 - name: "community api"
   description: "Manage Community"
+- name: "location api"
+  description: "location"
 - name: "sample api"
   description: "Operate hoge"
 paths:
@@ -44,6 +46,19 @@ paths:
           description: "return Communities List"
           schema:
             $ref: "#/definitions/GetCommunitiesListOutputDto"
+  /v1/location:
+    get:
+      tags:
+      - "location api"
+      summary: "Get Location"
+      description: "get tag location"
+      operationId: "GetTagList"
+      parameters: []
+      responses:
+        200:
+          description: "return tag locaation"
+          schema:
+            $ref: "#/definitions/GetLocationListOutputDto"
   /v1/sample:
     get:
       tags:
@@ -111,6 +126,13 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Community"
+  GetLocationListOutputDto:
+    type: "object"
+    properties:
+      locationList:
+        type: "array"
+        items:
+          $ref: "#/definitions/Location"
   HelloWorldInputDto:
     type: "object"
     required:
@@ -125,6 +147,14 @@ definitions:
         type: "integer"
         format: "int32"
       message:
+        type: "string"
+  Location:
+    type: "object"
+    properties:
+      locationId:
+        type: "integer"
+        format: "int32"
+      locationName:
         type: "string"
   PostCommunityInputDto:
     type: "object"
