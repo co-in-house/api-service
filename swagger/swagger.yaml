@@ -15,7 +15,7 @@ paths:
       - "community api"
       summary: "Post Community"
       description: "insert community"
-      operationId: "helloWorld"
+      operationId: "CreateCommunity"
       parameters:
       - in: "body"
         name: "body"
@@ -24,7 +24,7 @@ paths:
           $ref: "#/definitions/PostCommunityInputDto"
       responses:
         200:
-          description: "return status code only"
+          description: "return community_id"
           schema:
             $ref: "#/definitions/PostCommunityOutputDto"
   /v1/community/list:
@@ -92,8 +92,6 @@ definitions:
         type: "string"
       profileImgUrl:
         type: "string"
-      headerImgUrl:
-        type: "string"
       tagList:
         type: "array"
         items:
@@ -131,16 +129,18 @@ definitions:
   PostCommunityInputDto:
     type: "object"
     required:
-    - "communityName"
     - "locationId"
+    - "name"
     properties:
-      communityName:
+      name:
         type: "string"
       content:
         type: "string"
       locationId:
         type: "integer"
         format: "int32"
+      image64:
+        type: "string"
       note:
         type: "string"
       tagList:

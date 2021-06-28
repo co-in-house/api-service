@@ -34,9 +34,6 @@ public class Community {
     /** プロフィール画像　URL */
     private String profileImgUrl;
 
-    /** ヘッダー画像URL */
-    private String headerImgUrl;
-
     /** タグリスト */
     private List<Tag> tagList;
 

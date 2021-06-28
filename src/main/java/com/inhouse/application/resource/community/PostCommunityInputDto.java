@@ -20,7 +20,7 @@ public class PostCommunityInputDto {
  
     @NotNull
     /** コミュニティ名 */
-    private String communityName;
+    private String name;
     
     /** 活動内容 */
     private String content;
@@ -29,12 +29,11 @@ public class PostCommunityInputDto {
     /** 位置ID*/
     private int locationId;
 
+    /** base64encoded プロフィール画像  */
+    private String image64;
+
     /** 備考 */
     private String note;
-
-    /** プロフィール画像データ */
-
-    /** ヘッダー画像データ */
 
     /** タグリスト */
     private List<String> tagList;
@@ -56,7 +55,7 @@ public class PostCommunityInputDto {
             }
         }
         return Community.builder()
-                .communityName(this.communityName)
+                .communityName(this.name)
                 .content(this.content)
                 .locationId(this.locationId)
                 .note(this.note)
@@ -65,4 +64,8 @@ public class PostCommunityInputDto {
                 .build();
     }
 
+    @Override
+    public String toString(){
+        return "{name: " + this.name + ", content: "+ this.content +", locationId: " + this.locationId +", note: " +this.note +",requirement: "+this.requirement + ", tagList: "+this.tagList +"}";
+    }
 }

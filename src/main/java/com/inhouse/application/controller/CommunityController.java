@@ -60,13 +60,14 @@ public class CommunityController {
 
     @ApiOperation(value ="Post Community", notes="insert community")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "return status code only", response = PostCommunityOutputDto.class)
+            @ApiResponse(code = 200, message = "return community_id", response = PostCommunityOutputDto.class)
     })
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public PostCommunityOutputDto helloWorld(@RequestBody @Validated PostCommunityInputDto body) {
+    public PostCommunityOutputDto CreateCommunity(@RequestBody @Validated PostCommunityInputDto body) {
         PostCommunityOutputDto response = new PostCommunityOutputDto();
-        
+
+        System.out.println("body: " + body.toString());                                    
         int communityId = service.createCommunity(body.toDomain());
 
         response.setCommunityId(communityId);

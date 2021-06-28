@@ -67,9 +67,6 @@ public class CommunityEntity implements Serializable {
     @Column(name = "profile_img_url")
     private String profileImgUrl;
 
-    @Column(name = "heaer_img_url")
-    private String headerImgUrl;
-
     @Column(name = "created")
     private Timestamp created;
 
@@ -99,7 +96,6 @@ public class CommunityEntity implements Serializable {
                     )
                     .note(community.getNote())
                     .profileImgUrl(community.getProfileImgUrl())
-                    .headerImgUrl(community.getHeaderImgUrl())
                     .created(community.getCreated())
                     .modified(community.getModified())
                     .build();
@@ -121,7 +117,6 @@ public class CommunityEntity implements Serializable {
                 .locationName(this.localtion.getLocationName())
                 .note(this.note)
                 .profileImgUrl(this.profileImgUrl)
-                .headerImgUrl(this.headerImgUrl)
                 .tagList(tagList)
                 .created(this.getCreated())
                 .modified(this.getModified())
