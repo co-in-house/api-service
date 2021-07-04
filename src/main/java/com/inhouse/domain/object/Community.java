@@ -32,7 +32,7 @@ public class Community {
     private String note;
 
     /** プロフィール画像　URL */
-    private String profileImgUrl;
+    private String iconImgUrl;
 
     /** タグリスト */
     private List<Tag> tagList;

@@ -95,7 +95,7 @@ public class CommunityEntity implements Serializable {
                             )
                     )
                     .note(community.getNote())
-                    .profileImgUrl(community.getProfileImgUrl())
+                    .profileImgUrl(community.getIconImgUrl())
                     .created(community.getCreated())
                     .modified(community.getModified())
                     .build();
@@ -116,7 +116,7 @@ public class CommunityEntity implements Serializable {
                 .locationId(this.localtion.getLocationId())
                 .locationName(this.localtion.getLocationName())
                 .note(this.note)
-                .profileImgUrl(this.profileImgUrl)
+                .iconImgUrl(this.profileImgUrl)
                 .tagList(tagList)
                 .created(this.getCreated())
                 .modified(this.getModified())

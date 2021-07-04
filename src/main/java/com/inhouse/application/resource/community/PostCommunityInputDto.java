@@ -29,8 +29,8 @@ public class PostCommunityInputDto {
     /** 位置ID*/
     private int locationId;
 
-    /** base64encoded プロフィール画像  */
-    private String image64;
+    /** プロフィール画像url  */
+    private String iconImgUrl;
 
     /** 備考 */
     private String note;
@@ -59,6 +59,7 @@ public class PostCommunityInputDto {
                 .content(this.content)
                 .locationId(this.locationId)
                 .note(this.note)
+                .iconImgUrl(this.iconImgUrl)
                 .tagList(tags)
                 .requirement(this.requirement)
                 .build();
@@ -66,6 +67,6 @@ public class PostCommunityInputDto {
 
     @Override
     public String toString(){
-        return "{name: " + this.name + ", content: "+ this.content +", locationId: " + this.locationId +", note: " +this.note +",requirement: "+this.requirement + ", tagList: "+this.tagList +"}";
+        return "{name: " + this.name + ", content: "+ this.content +", locationId: " + this.locationId +", note: " +this.note +",requirement: "+this.requirement + ", tagList: "+this.tagList +", iconImgUrl: " + this.iconImgUrl +"}";
     }
 }
