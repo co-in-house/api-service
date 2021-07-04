@@ -105,7 +105,7 @@ definitions:
         type: "string"
       note:
         type: "string"
-      profileImgUrl:
+      iconImgUrl:
         type: "string"
       tagList:
         type: "array"
@@ -169,7 +169,7 @@ definitions:
       locationId:
         type: "integer"
         format: "int32"
-      image64:
+      iconImgUrl:
         type: "string"
       note:
         type: "string"
