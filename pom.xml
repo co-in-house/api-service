@@ -1,119 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.inhouse</groupId>
-	<artifactId>app-service</artifactId>
-	<version>0.0.1</version>
-	<name>app-service</name>
-	<description>api for inhouse app
-	</description>
-	<properties>
-		<java.version>11</java.version>
-	</properties>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.inhouse</groupId>
+  <artifactId>app-service</artifactId>
+  <version>0.0.1</version>
+  <packaging>war</packaging>
 
-	<repositories>
-        <repository>
-            <id>com.ibm.db2.jcc</id>
-            <url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
-        </repository>
-    </repositories>
+  <properties>
+      <java.version>11</java.version>
+      <maven.compiler.target>${java.version}</maven.compiler.target>
+      <maven.compiler.source>${java.version}</maven.compiler.source>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet</artifactId>
+      <version>2.22.1</version>
+    </dependency>
+  </dependencies>
 
-
-	<dependencies>
-		<!-- For Web and REST support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- Spring Data and JPA support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
-        </dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.8</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-            <groupId>com.ibm.db2.jcc</groupId>
-            <artifactId>db2jcc4</artifactId>
-            <version>10.1</version>
-        </dependency>
-	
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>1.6.2</version>
-		</dependency>
-
-	 </dependencies>
-
-	<build>
-		<finalName>app-service</finalName>
-		
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>com.github.kongchen</groupId>
-				<artifactId>swagger-maven-plugin</artifactId>
-				<version>3.1.8</version>
-				<configuration>
-					<apiSources>
-						<apiSource>
-							<springmvc>true</springmvc>
-							<locations>com.inhouse.application.controller</locations>
-							<info>
-								<title>app-service</title>
-								<version>v1</version>
-							</info>
-							<outputFormats>yaml</outputFormats>
-							<swaggerDirectory>swagger/</swaggerDirectory>
-						</apiSource>
-					</apiSources>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-		</plugins>		
-	</build>
-
+  <build>
+    <finalName>app-service</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>${maven.compiler.target}</source>
+          <target>${maven.compiler.source}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
