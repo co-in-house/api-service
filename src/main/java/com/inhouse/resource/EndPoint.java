@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import com.inhouse.dto.request.GetHelloOutputDto;
+import com.inhouse.dto.GetHelloOutputDto;
 import com.inhouse.util.ConsoleLogger;
 
 

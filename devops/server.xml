@@ -6,5 +6,19 @@
                   httpPort="9080"
                   httpsPort="9443" />
     <applicationManager autoExpand="true" />
+
+    <Librarty id="db2">
+        <fileset dir="${shared.resource.dir}" includes="db2jcc4.jar"/>
+    </Librarty>
+    <dataSource id="ds01" jndiName="jdbc/nextDS">
+        <jdbcDriver libraryRef="db2" />
+        <connectionManager maxPoolSize="10" minPoolsize="1" />
+        <properties.db2.jcc serverName="${DB_HOST}" databaseName="${DB_NAME}"
+                            portNumber="${DB_PORT}" currentSchema="${DB_SCH}"
+                            user="${DB_USER}" password="${DB_PSWD}" sslConnection="true" enableSeamlessFailover="1"
+                            connctionTimeout="60s" blockingReadConnectiontimeout="30s" />
+    </dataSource>
+
+    <webAppSecurity useAuthenticationDataForUnprotectedResource="false" />
     <webApplication contextRoot="/service" location="/config/app/app-service.war" />
 </server>

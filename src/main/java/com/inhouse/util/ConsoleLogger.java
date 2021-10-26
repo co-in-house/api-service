@@ -12,6 +12,7 @@ public class ConsoleLogger {
 
     static final private String INFO = "INFO";
     static final private String ERROR = "ERROR";
+    static final private String DEBUG = "DEBUG";
     
     
     static public void info(String message) {
@@ -20,6 +21,10 @@ public class ConsoleLogger {
 
     static public void error(String message) {
         System.out.println(new StringBuffer().append(timestampString()).append("\t").append(ERROR).append("\t").append(message).toString());
+    }
+
+    static public void debug(String message) {
+        System.out.println(new StringBuffer().append(timestampString()).append("\t").append(DEBUG).append("\t").append(message).toString());
     }
 
 
