@@ -7,9 +7,9 @@
                   httpsPort="9443" />
     <applicationManager autoExpand="true" />
 
-    <Librarty id="db2">
+    <library id="db2">
         <fileset dir="${shared.resource.dir}" includes="db2jcc4.jar"/>
-    </Librarty>
+    </library>
     <dataSource id="ds01" jndiName="jdbc/nextDS">
         <jdbcDriver libraryRef="db2" />
         <connectionManager maxPoolSize="10" minPoolsize="1" />

@@ -35,6 +35,7 @@ public class AccesslogFilter implements Filter {
         
         
         ConsoleLogger.info(new StringBuffer("[Request]").append(" ").append(method).append(" ").append(uri).toString());
+        ConsoleLogger.debug(new StringBuffer("[REQDUMP]").append(" ").append(method).append(" ").append(uri).append(" ").append(request.getQueryString()).toString());
         
         try{
             filterChain.doFilter(sRequest, sResponse);	

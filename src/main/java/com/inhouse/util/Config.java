@@ -15,7 +15,7 @@ public class Config {
         } else {
             props = new HashMap<String, String>();
             Properties pps = new Properties();
-            pps.load(Config.class.getClassLoader().getResourceAsStream("prop.properites"));
+            pps.load(Config.class.getClassLoader().getResourceAsStream("prop.properties"));
             Enumeration<?> enum1 = pps.propertyNames();
             while (enum1.hasMoreElements()) {
                 String strKey = (String) enum1.nextElement();

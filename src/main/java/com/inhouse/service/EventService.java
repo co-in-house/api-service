@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import com.inhouse.dao.EventDao;
 import com.inhouse.dto.Event;
 import com.inhouse.dto.EventList;
+import com.inhouse.util.ConsoleLogger;
 
 @RequestScoped
 public class EventService {
@@ -16,16 +17,16 @@ public class EventService {
     @Inject
     private EventDao eventDao;
     
-    public EventList getEventList(String communityIds){
+    public EventList getEventList(ArrayList<Long> communityIdList){
         EventList result = EventList.builder().build();
         List<Event> eventList = new ArrayList<Event>();
         try {
-            for (String str : communityIds.split(",")) {        
-                eventList.addAll(eventDao.getEventList(Long.parseLong(str)));
+            for (Long communityId : communityIdList) {        
+                eventList.addAll(eventDao.getEventList(communityId));
             }
             result.setEventList(eventList);
         } catch (Exception e) {
-            e.getStackTrace();
+            ConsoleLogger.error(e.getMessage());
         }
         return result;
     }
