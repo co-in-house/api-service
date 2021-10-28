@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.inhouse.dto.Event;
 import com.inhouse.dto.EventList;
+import com.inhouse.dto.Result;
 import com.inhouse.service.EventService;
 import com.inhouse.util.ConsoleLogger;
 
@@ -62,29 +64,29 @@ public class EventResource {
     return rb.build();
   }
 
-  /** Get 1 event info */
-  @GET
-  @Path("/info")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getInfo() {
-    ResponseBuilder rb = null;
-    // Event result = Event.builder().hogeMessage("hello").fugaMessage("world!").build();
-    rb = Response.status(Response.Status.OK).entity(null);
-
-    return rb.build();
-  }
-
-
     /** Post 1 event info */
     @POST
     @Path("/info")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postInfo(Event event) {
+    public Response postInfo(JsonObject json) {
       ResponseBuilder rb = null;
-      // Event result = Event.builder().hogeMessage("hello").fugaMessage("world!").build();
-      rb = Response.status(Response.Status.OK).entity(null);
-  
+      Event event;
+      try {
+        event = jsonToEvent(json);
+      } catch (Exception e) {
+        ConsoleLogger.debug(e.getMessage());
+        rb = Response.status(Response.Status.BAD_REQUEST);
+        return rb.build();
+      }
+      boolean isSqlSuccess = service.postEvent(event);
+      if(isSqlSuccess){
+        Result result = Result.builder().result("success").build();
+        rb = Response.status(Response.Status.OK).entity(result);
+      } else {
+        rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
+      }
+      
       return rb.build();
     }
 
@@ -96,8 +98,23 @@ public class EventResource {
     public Response putInfo(Event event) {
       ResponseBuilder rb = null;
       // Event result = Event.builder().hogeMessage("hello").fugaMessage("world!").build();
+
       rb = Response.status(Response.Status.OK).entity(null);
   
       return rb.build();
+    }
+
+
+    private Event jsonToEvent(JsonObject json) throws ClassCastException, NullPointerException {
+      return Event.builder()
+                  .communityId(Long.valueOf(json.getInt("communityId")))
+                  .title(json.getString("title"))
+                  .start(json.getString("start"))
+                  .end(json.getString("end"))
+                  .location(json.getString("location"))
+                  .description(json.getString("description"))
+                  .thumbnailImg(json.getString("thumbnailImg"))
+                  .build();
+      
     }
 }

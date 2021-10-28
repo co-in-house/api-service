@@ -27,13 +27,12 @@ public class Event {
     private String end;
 
     @JsonProperty("location")
-    private String locaiton;
+    private String location;
 
     @JsonProperty("description")
     private String description;
 
     @JsonProperty("thumbnailImg")
     private String thumbnailImg;
-
 
 }
