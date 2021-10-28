@@ -53,4 +53,23 @@ public class EventService {
 
         return result;
     }
+
+    /**
+     * イベントを更新
+     * @param event
+     * @return boolean isSuccess
+     */
+    public boolean putEvent(Event event){
+        boolean result = false;
+
+        try {
+            result = eventDao.putEvent(event);
+        } catch (SQLException e) {
+            ConsoleLogger.error(e.getMessage());
+        }
+
+        return result;
+    }
+
+    
 }

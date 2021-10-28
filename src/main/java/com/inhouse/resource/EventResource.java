@@ -73,7 +73,7 @@ public class EventResource {
       ResponseBuilder rb = null;
       Event event;
       try {
-        event = jsonToEvent(json);
+        event = jsonToEventForPost(json);
       } catch (Exception e) {
         ConsoleLogger.debug(e.getMessage());
         rb = Response.status(Response.Status.BAD_REQUEST);
@@ -95,19 +95,43 @@ public class EventResource {
     @Path("/info")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response putInfo(Event event) {
+    public Response putInfo(JsonObject json) {
       ResponseBuilder rb = null;
-      // Event result = Event.builder().hogeMessage("hello").fugaMessage("world!").build();
-
-      rb = Response.status(Response.Status.OK).entity(null);
-  
+      Event event;
+      try {
+        event = jsonToEventForPut(json);
+      } catch (Exception e) {
+        ConsoleLogger.debug(e.getMessage());
+        rb = Response.status(Response.Status.BAD_REQUEST);
+        return rb.build();
+      }
+      boolean isSqlSuccess = service.putEvent(event);
+      if(isSqlSuccess){
+        Result result = Result.builder().result("success").build();
+        rb = Response.status(Response.Status.OK).entity(result);
+      } else {
+        rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
+      }
+      
       return rb.build();
     }
 
 
-    private Event jsonToEvent(JsonObject json) throws ClassCastException, NullPointerException {
+    private Event jsonToEventForPost(JsonObject json) throws ClassCastException, NullPointerException {
       return Event.builder()
                   .communityId(Long.valueOf(json.getInt("communityId")))
+                  .title(json.getString("title"))
+                  .start(json.getString("start"))
+                  .end(json.getString("end"))
+                  .location(json.getString("location"))
+                  .description(json.getString("description"))
+                  .thumbnailImg(json.getString("thumbnailImg"))
+                  .build();
+    }
+
+    private Event jsonToEventForPut(JsonObject json) throws ClassCastException, NullPointerException {
+      return Event.builder()
+                  .eventId(Long.valueOf(json.getInt("eventId")))
                   .title(json.getString("title"))
                   .start(json.getString("start"))
                   .end(json.getString("end"))
