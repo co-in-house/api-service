@@ -1,0 +1,4 @@
+---
+applications:
+  - name: app-service
+    memory: 256m

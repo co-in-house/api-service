@@ -1,3 +1,4 @@
+# FROM us.icr.io/inh-p-01/java11-open-liberty:1.0.0 
 FROM open-liberty:full-java11-openj9
 
 COPY --chown=1001:0 server.xml /config/

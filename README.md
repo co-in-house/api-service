@@ -10,3 +10,22 @@
 
 ## 閲覧
 `curl -vvv "http://localhost:9080/service/api/event/list?communityids=1"`
+
+
+
+
+## push image into Container Registroy
+1. `docker tag app-service:1.0.0 us.icr.io/inh-p-01/app-service:1.0.0`
+2. `docker push us.icr.io/inh-p-01/app-service:1.0.0`
+3. `ibmcloud iam api-key-create inhouse-cr -d "for container registry access" --file crKey.json`
+4. `export $( echo $(cat crKey.json) | jq -r 'keys[] as $k | "export \($k)=\(.[$k])"')`
+5. `export CF_DOCKER_PASSWORD=$apikey`
+
+## deploy image to Cloud Foundry
+1. `ibmcloud target -r au-syd`
+2. `ibmcloud target --cf`
+3. check diego_docker is enabled
+   1. `ibmcloud cf feature-flags`
+5. `ibmcloud cf push app-service --docker-image us.icr.io/inh-p-01/app-service:1.0.0 --docker-username iamapikey -f manifest.yaml`
+6. `ibmcloud apps`
+7. `ibmcloud cf logs  app-service`
