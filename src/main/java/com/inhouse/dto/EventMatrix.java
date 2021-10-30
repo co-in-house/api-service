@@ -12,9 +12,9 @@ import lombok.Data;
 @Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EventList {
+public class EventMatrix {
 
-    @JsonProperty("eventList")
-    private List<Event> eventList;
+    @JsonProperty("eventMatrix")
+    private List<List<Event>> eventMatrix;
 
 }

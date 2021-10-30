@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.inhouse.dto.Event;
-import com.inhouse.dto.EventList;
+import com.inhouse.dto.EventMatrix;
 import com.inhouse.dto.Result;
 import com.inhouse.service.EventService;
 import com.inhouse.util.ConsoleLogger;
@@ -44,21 +44,21 @@ public class EventResource {
       return rb.build();
     } 
 
-    ArrayList<Long> communityIdList = new ArrayList<Long>();
+    Long[] communityIdList = new Long[0];
     
     try {
       ArrayList<Long> tmpIdList = new ArrayList<Long>();
       for (String str : communityIds.split(",")) {        
         tmpIdList.add(Long.parseLong(str));
        }
-       communityIdList = (ArrayList<Long>) tmpIdList.stream().distinct().collect(Collectors.toList());
+       communityIdList = tmpIdList.stream().distinct().collect(Collectors.toList()).toArray(new Long[0]);
     } catch (Exception e) {
       ConsoleLogger.error(e.getMessage());
       rb = Response.status(Response.Status.BAD_REQUEST);
       return rb.build();
     }
 
-    EventList result = service.getEventList(communityIdList);
+    EventMatrix result = service.getEventMatrix(communityIdList);
     rb = Response.status(Response.Status.OK).entity(result);
 
     return rb.build();

@@ -22,19 +22,26 @@ public class EventDao {
     private Connection con;
 
     /** イベントリストを取得するSQL */
-    private static final String SQL_SELECT_EVENT_LIST = "SELECT community_id, event_id, title, start, end, location, description, thumbnail_img FROM event WHERE delete_flag = 0 and community_id = ?";
-
+    private static final String SQL_SELECT_EVENT_LIST_1 = "SELECT community_id, event_id, title, start, end, location, description, thumbnail_img FROM event WHERE delete_flag = 0 and community_id IN (";
+    private static final String SQL_SELECT_EVENT_LIST_2 = ") order by start, event_id";
     /** イベントを登録するSQL */
     private static final String SQL_INSERT_EVENT = "INSERT INTO event(COMMUNITY_ID,TITLE,START,END,LOCATION,DESCRIPTION,THUMBNAIL_IMG,CREATED_AT,MODIFIED_AT) VALUES (?,?,?,?,?,?,?,?,?)";
 
     /** イベントを更新するSQL */
     private static final String SQL_UPDATE_EVENT =  "UPDATE EVENT SET title = ?, start= ?, end =?, location = ?, description = ?, thumbnail_img = ?, modified_at = ? WHERE event_id = ?";
 
-    public List<Event> getEventList(Long communityId) throws SQLException {
+    public List<Event> getEventList(Long[] communityIdList) throws SQLException {
         List<Event> result = new ArrayList<Event>();
-        try (PreparedStatement pst = con.prepareStatement(SQL_SELECT_EVENT_LIST)){
-            pst.setLong (1,communityId);
-            ConsoleLogger.debug(" RUN SQL : " + SQL_SELECT_EVENT_LIST + ", param : " + communityId.toString());
+        StringBuilder paramBuilder = new StringBuilder();
+        for (Long id : communityIdList) {
+            id.toString();
+            paramBuilder.append(id.toString());
+            paramBuilder.append(",");
+        }
+        String param = paramBuilder.deleteCharAt( paramBuilder.length() -1 ).toString();
+        String sql = SQL_SELECT_EVENT_LIST_1 + param + SQL_SELECT_EVENT_LIST_2;
+        try (PreparedStatement pst = con.prepareStatement(sql)){
+            ConsoleLogger.debug(" RUN SQL : " + sql);
             try (ResultSet rs = pst.executeQuery()){
                 while(rs.next()){
                     result.add(
@@ -50,7 +57,7 @@ public class EventDao {
                         .build()
                     );
                 }
-            }
+            } 
         }
         return result;
     }
