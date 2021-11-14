@@ -42,7 +42,10 @@ public class CommunityResource {
     return rb.build();
   }
 
-
+  /** 
+   * Search Community list 
+   * param Sting keyword
+   */
   @GET
   @Path("/search")
   @Produces(MediaType.APPLICATION_JSON)
@@ -60,5 +63,5 @@ public class CommunityResource {
     return rb.build();
   }
 
-
+  
 }
