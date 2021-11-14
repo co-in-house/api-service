@@ -3,4 +3,4 @@
 /devops/*.war
 /devops/*.json
 /devops/*.crt
-/devops/*.env
+/devops/prod.env

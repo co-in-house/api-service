@@ -18,6 +18,12 @@ public class Community {
     @JsonProperty("communityName")
     private String communityName;
 
+    @JsonProperty("location")
+    private String location;
+
+    @JsonProperty("description")
+    private String description;
+
     @JsonProperty("icon_img")
     private String iconImg;
 

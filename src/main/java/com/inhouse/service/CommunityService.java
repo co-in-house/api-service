@@ -41,4 +41,22 @@ public class CommunityService {
    
         return CommunityList.builder().communityList(communityList).build();
     }
+
+
+    /**
+     * 
+     * @param keyword
+     * @return {@link CommunityList} 
+     */
+    public CommunityList getCommunityListLikeKeyword(String keyword){
+        ArrayList<Community> communityList = new ArrayList<Community>();
+
+        try {
+            communityList = comDao.getCommunityListLikeTitle(keyword);
+        } catch (SQLException e) {
+            ConsoleLogger.error(e.getMessage());
+        }
+   
+        return CommunityList.builder().communityList(communityList).build();
+    }
 }

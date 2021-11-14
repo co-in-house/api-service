@@ -41,4 +41,24 @@ public class CommunityResource {
 
     return rb.build();
   }
+
+
+  @GET
+  @Path("/search")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response search(@QueryParam("keyword") final String keyword) {
+    ResponseBuilder rb = null;
+
+    if(Objects.isNull(keyword)|| keyword.isEmpty() || keyword.trim() == ""){
+      rb = Response.status(Response.Status.BAD_REQUEST);
+      return rb.build();
+    } 
+
+    CommunityList result = service.getCommunityListLikeKeyword(keyword);
+    
+    rb = Response.status(Response.Status.OK).entity(result);
+    return rb.build();
+  }
+
+
 }
