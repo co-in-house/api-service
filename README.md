@@ -24,7 +24,8 @@
 ## deploy image to Cloud Foundry
 1. `ibmcloud target -r au-syd`
 2. `ibmcloud target --cf`
-3. check diego_docker is enabled
+3. `ibmcloud target -g Default`
+4. check diego_docker is enabled
    1. `ibmcloud cf feature-flags`
 5. `ibmcloud cf push app-service --docker-image us.icr.io/inh-p-01/app-service:1.0.0 --docker-username iamapikey -f manifest.yaml`
 6. `ibmcloud apps`
