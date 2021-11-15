@@ -18,7 +18,7 @@ public class UserService {
     private UserDao userDao;
 
 
-     /**
+    /**
      *  communityIdに紐づく参加ユーザ一覧を取得する
      * @param communityId
      * @return {@link UserInfo}型のList

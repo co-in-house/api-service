@@ -28,8 +28,6 @@ public class UserDao {
     + " INNER JOIN user as user ON ucr.user_id =user.user_id"
     + " where ucr.community_id = ?";
 
-
-
     public ArrayList<Long> getJoinedCommunityIdListByUserId(Long userId) throws SQLException {
         ArrayList<Long> result = new ArrayList<Long>();
         try (PreparedStatement pst = con.prepareStatement(SQL_SELECT_JOINED_COMMUNITY_ID)){
